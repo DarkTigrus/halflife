@@ -154,6 +154,7 @@ int gmsgFade = 0;
 int gmsgSelAmmo = 0;
 int gmsgFlashlight = 0;
 int gmsgFlashBattery = 0;
+int gmsgVelocity = 0;
 int gmsgResetHUD = 0;
 int gmsgInitHUD = 0;
 int gmsgShowGameTitle = 0;
@@ -206,6 +207,7 @@ void LinkUserMessages( void )
 	gmsgHealth = REG_USER_MSG( "Health", 1 );
 	gmsgDamage = REG_USER_MSG( "Damage", 12 );
 	gmsgBattery = REG_USER_MSG( "Battery", 2);
+	gmsgVelocity = REG_USER_MSG("Speed", 2);
 	gmsgTrain = REG_USER_MSG( "Train", 1);
 	//gmsgHudText = REG_USER_MSG( "HudTextPro", -1 );
 	gmsgHudText = REG_USER_MSG( "HudText", -1 ); // we don't use the message but 3rd party addons may!
@@ -4029,6 +4031,17 @@ void CBasePlayer :: UpdateClientData( void )
 		// send "health" update message
 		MESSAGE_BEGIN( MSG_ONE, gmsgBattery, NULL, pev );
 			WRITE_SHORT( (int)pev->armorvalue);
+		MESSAGE_END();
+	}
+
+	if (pev->velocity != m_Velocity)
+	{
+		m_Velocity = pev->velocity;
+
+		float speed = sqrt((m_Velocity[0] * m_Velocity[0]) + (m_Velocity[1] * m_Velocity[1])); // probably calculation should be on client side. Need more smooth solution
+
+		MESSAGE_BEGIN( MSG_ONE, gmsgVelocity, NULL, pev );
+		WRITE_SHORT((int)speed);
 		MESSAGE_END();
 	}
 

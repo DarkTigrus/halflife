@@ -122,6 +122,7 @@ public:
 	float				m_flSndRange;			// dist from player to sound entity
 
 	float				m_flFallVelocity;
+	Vector				m_Velocity;
 	
 	int					m_rgItems[MAX_ITEMS];
 	int					m_fKnownItem;		// True when a new item needs to be added

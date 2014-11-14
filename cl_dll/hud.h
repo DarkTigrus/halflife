@@ -188,6 +188,22 @@ private:
 //
 //-----------------------------------------------------
 //
+class CHudSpeedometer : public CHudBase
+{
+public:
+	int Init(void);
+	int VidInit(void);
+	int Draw(float flTime);
+	int MsgFunc_Speed(const char *pszName, int iSize, void *pbuf);
+
+private:
+	int m_iSpeed;
+
+};
+
+//
+//-----------------------------------------------------
+//
 class CHudTrain: public CHudBase
 {
 public:
@@ -599,6 +615,7 @@ public:
 	CHudHealth		m_Health;
 	CHudSpectator		m_Spectator;
 	CHudGeiger		m_Geiger;
+	CHudSpeedometer	m_Speedometer;
 	CHudBattery		m_Battery;
 	CHudTrain		m_Train;
 	CHudFlashlight	m_Flash;

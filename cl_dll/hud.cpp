@@ -355,6 +355,7 @@ void CHud :: Init( void )
 	m_SayText.Init();
 	m_Spectator.Init();
 	m_Geiger.Init();
+	m_Speedometer.Init();
 	m_Train.Init();
 	m_Battery.Init();
 	m_Flash.Init();
@@ -502,6 +503,7 @@ void CHud :: VidInit( void )
 	m_Health.VidInit();
 	m_Spectator.VidInit();
 	m_Geiger.VidInit();
+	m_Speedometer.VidInit();
 	m_Train.VidInit();
 	m_Battery.VidInit();
 	m_Flash.VidInit();
