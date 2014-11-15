@@ -4047,9 +4047,6 @@ void CBasePlayer :: UpdateClientData( void )
 		MESSAGE_END();
 	}
 
-		MESSAGE_END();
-	}
-
 	if (pev->dmg_take || pev->dmg_save || m_bitsHUDDamage != m_bitsDamageType)
 	{
 		// Comes from inside me if not set
