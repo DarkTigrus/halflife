@@ -194,10 +194,11 @@ public:
 	int Init(void);
 	int VidInit(void);
 	int Draw(float flTime);
-	int MsgFunc_Speed(const char *pszName, int iSize, void *pbuf);
+	int MsgFunc_Velocity(const char *pszName, int iSize, void *pbuf);
 
 private:
-	int m_iSpeed;
+	Vector m_iVelocity;
+	int	m_iSpeed;
 
 };
 

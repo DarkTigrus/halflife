@@ -13,11 +13,11 @@
 
 #include "parsemsg.h"
 
-DECLARE_MESSAGE(m_Speedometer, Speed)
+DECLARE_MESSAGE(m_Speedometer, Velocity)
 
 int CHudSpeedometer::Init(void)
 {
-	HOOK_MESSAGE(Speed);
+	HOOK_MESSAGE(Velocity);
 
 	m_iSpeed = 0;
 
@@ -33,11 +33,13 @@ int CHudSpeedometer::VidInit(void)
 	return 1;
 };
 
-int CHudSpeedometer::MsgFunc_Speed(const char *pszName, int iSize, void *pbuf)
+int CHudSpeedometer::MsgFunc_Velocity(const char *pszName, int iSize, void *pbuf)
 {
 	BEGIN_READ(pbuf, iSize);
 
-	m_iSpeed = READ_SHORT();
+	m_iVelocity.x = READ_COORD();
+	m_iVelocity.y = READ_COORD();
+	m_iVelocity.z = READ_COORD();
 
 	m_iFlags |= HUD_ACTIVE;
 
@@ -57,6 +59,8 @@ int CHudSpeedometer::Draw(float flTime)
 
 	x = ScreenWidth / 2;
 	y = ScreenHeight - gHUD.m_iFontHeight - gHUD.m_iFontHeight / 2;
+
+	m_iSpeed = (int)m_iVelocity.Length2D();
 
 	gHUD.DrawHudNumber(x, y, 1, m_iSpeed, r, g, b);
 
