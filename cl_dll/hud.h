@@ -194,12 +194,14 @@ public:
 	int Init(void);
 	int VidInit(void);
 	int Draw(float flTime);
+	void GetJumpColor(int &r, int &g, int &b, float t);
 	int MsgFunc_Velocity(const char *pszName, int iSize, void *pbuf);
 
 private:
 	Vector m_iVelocity;
 	int	m_iSpeed;
-
+	int m_iJump;
+	float m_fFade;
 };
 
 //
