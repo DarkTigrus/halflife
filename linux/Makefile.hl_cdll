@@ -3,6 +3,8 @@
 #
 #
 
+BIN_DIR=../../game/mod/cl_dlls
+
 HL_SRC_DIR=$(SOURCE_DIR)/cl_dll
 HL_SERVER_SRC_DIR=$(SOURCE_DIR)/dlls
 GAME_SHARED_SRC_DIR=$(SOURCE_DIR)/game_shared
@@ -138,9 +140,9 @@ all: client.$(SHLIBEXT)
 
 client.$(SHLIBEXT): $(HL1_OBJS) $(PUBLIC_OBJS) $(COMMON_OBJS) $(GAME_SHARED_OBJS) $(DLL_OBJS) $(PM_SHARED_OBJS)
 	$(CLINK) -o $(BUILD_DIR)/$@ $(HL1_OBJS) $(PUBLIC_OBJS) $(COMMON_OBJS) $(GAME_SHARED_OBJS) $(DLL_OBJS) $(PM_SHARED_OBJS) $(LDFLAGS) $(CPP_LIB)
-	p4 edit ../../game/mod/cl_dlls/$@
-	cp $(BUILD_DIR)/$@  ../../game/mod/cl_dlls
-	./gendbg.sh ../../game/mod/cl_dlls/client.$(SHLIBEXT)
+	mkdir -p $(BIN_DIR)
+	cp $(BUILD_DIR)/$@  $(BIN_DIR)
+	./gendbg.sh $(BIN_DIR)/client.$(SHLIBEXT)
 
 $(HL1_OBJ_DIR):
 	mkdir -p $(HL1_OBJ_DIR)

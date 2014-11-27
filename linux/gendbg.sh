@@ -8,7 +8,7 @@ if [ "$UNAME" == "Darwin" ]; then
 	exit 0;
 fi
 
-OBJCOPY=/valve/bin/objcopy
+OBJCOPY=objcopy
 
 function usage {
 	echo "$0 /path/to/input/file [-o /path/to/output/file ]"
@@ -45,9 +45,7 @@ if [ "$OUTFILEDIR" != "$INFILEDIR" ]; then
 fi
 
 pushd "$INFILEDIR"
-p4 edit "$OUTFILE"
 $OBJCOPY "$INFILE" "$OUTFILE"
 $OBJCOPY --add-gnu-debuglink="$OUTFILE" "$INFILE"
-p4 revert -a "$OUTFILE"
 popd
 
